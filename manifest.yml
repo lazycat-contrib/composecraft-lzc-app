@@ -20,6 +20,8 @@ application:
       service: db
 services:
   saas:
+  # composecraft/composecraft:1.0.4
+
     image: registry.lazycat.cloud/czyt/composecraft/composecraft:f158d6cdbd7cc187
     environment:
       - CORE_ONLY=false
