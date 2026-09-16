@@ -1,0 +1,17 @@
+package: cloud.lazycat.app.composecraft
+version: 0.0.1
+name: Compose Craft
+description: "Compose craft 是一款工具，可以帮助您以图形用户界面 (GUI) 的方式管理、编辑和共享 Docker Compose 文件。"
+min_os_version: "1.5.0"
+homepage: https://github.com/composecraft/composecraft
+author: czyt
+locales:
+  zh:
+    description: "Compose craft 是一款工具，可以帮助您以图形用户界面 (GUI) 的方式管理、编辑和共享 Docker Compose 文件。"
+    name: Compose Craft
+  en:
+    description: "Compose Craft is a tool that helps you manage, edit, and share Docker Compose files with a graphical user interface (GUI)."
+    name: Compose Craft
+unsupported_platforms:
+  - ios
+  - android
