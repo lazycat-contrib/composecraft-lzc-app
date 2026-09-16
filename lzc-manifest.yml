@@ -18,8 +18,8 @@ services:
     depends_on:
       - db
   db:
-    # upstream: mongo:8.0.29
-    image: docker.1ms.run/library/mongo:8.0.29
+    # upstream: library/mongo:8.0.32
+    image: docker.1ms.run/library/mongo:8.0.32
     environment:
       - MONGO_INITDB_ROOT_USERNAME=dev
       - MONGO_INITDB_ROOT_PASSWORD={{ stable_secret "db_password" }}
