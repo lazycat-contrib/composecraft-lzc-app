@@ -25,6 +25,7 @@ images:
     tag_regex: '^\d+\.\d+\.\d+$'
     delivery:
       mode: mirror
+      require_digest_match: true
   - id: db
     target: service
     service: db
@@ -34,6 +35,7 @@ images:
     tag_regex: '^8\.0\.\d+$'
     delivery:
       mode: mirror
+      require_digest_match: true
 stores:
   official:
     enabled: false

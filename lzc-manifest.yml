@@ -2,6 +2,10 @@ application:
   subdomain: composecraft
   background_task: false
   multi_instance: false
+  # ComposeCraft 自带注册/登录（JWT + bcrypt，/signin 可自助建号），
+  # 由它自己的登录页鉴权，因此直接对外开放，不再套平台入口鉴权。
+  public_path:
+    - /
   upstreams:
     - location: /
       backend: http://saas:3000/
@@ -15,6 +19,8 @@ services:
       - SECRET_KEY={{ stable_secret "secret_key" }}
       - MONGODB_URI=mongodb://dev:{{ stable_secret "db_password" }}@db
       - DISABLE_TELEMETRY=true
+      # 无 SMTP / 不需要向 Brevo 注册联系人，显式关闭（注册流程不依赖邮件）
+      - BREVO_DISABLED=true
     depends_on:
       - db
   db:
@@ -25,3 +31,15 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD={{ stable_secret "db_password" }}
     binds:
       - /lzcapp/var/db:/data/db
+
+usage: |-
+  Compose Craft 是可视化编辑、管理、分享 Docker Compose 文件的工具：
+  左侧写 YAML，右侧实时生成服务拓扑图，支持从 GitHub 仓库导入、导出 compose 文件。
+
+  首次使用请打开应用首页点「Create an account」自行注册账号（邮箱 + 密码，
+  注册不需要收邮件验证），注册后即登录。数据保存在应用自带的 MongoDB 中。
+  SECRET_KEY 与数据库口令在部署时随机生成并固定，重启不会导致登出。
+
+  说明：本包为镜像模式（composecraft/composecraft + mongo:8.0），
+  CORE_ONLY=false 保留完整编辑能力，已关闭遥测与 Brevo 联系人同步。
+  未做实机验证，首次部署后请确认注册与编辑器拓扑图正常。
