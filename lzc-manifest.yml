@@ -24,14 +24,13 @@ services:
     depends_on:
       - db
   db:
-    # upstream: library/mongo:8.0.34
-    image: docker.1ms.run/library/mongo:8.0.34
+    # upstream: library/mongo:8.0.38
+    image: docker.1ms.run/library/mongo:8.0.38
     environment:
       - MONGO_INITDB_ROOT_USERNAME=dev
       - MONGO_INITDB_ROOT_PASSWORD={{ stable_secret "db_password" }}
     binds:
       - /lzcapp/var/db:/data/db
-
 usage: |-
   Compose Craft 是可视化编辑、管理、分享 Docker Compose 文件的工具：
   左侧写 YAML，右侧实时生成服务拓扑图，支持从 GitHub 仓库导入、导出 compose 文件。
